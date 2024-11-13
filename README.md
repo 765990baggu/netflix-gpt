@@ -2,6 +2,8 @@
 
 - create-react-app
 - Configured TailwindCss
+  LogIn From
+  Sign Up From
 
 # Features
 
