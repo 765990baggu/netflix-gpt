@@ -7,16 +7,16 @@ import {
 } from "firebase/auth";
 
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/UserSlice";
+import { profile_Url } from "../utils/constants";
 
 const Login = () => {
   const [IssignInform, setSigninform] = useState(true);
   const [errorMessage, seterrorMessage] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const TogglesignInForm = () => {
     setSigninform(!IssignInform);
   };
@@ -44,8 +44,7 @@ const Login = () => {
             const user = userCredential.user;
             updateProfile(user, {
               displayName: name.current.value,
-              photoURL:
-                "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg",
+              photoURL: profile_Url,
             })
               .then(() => {
                 const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -57,14 +56,12 @@ const Login = () => {
                     photoURL: photoURL,
                   })
                 );
-                navigate("/browse");
               })
               .catch((error) => {
                 seterrorMessage(error.message);
               });
 
             console.log(user);
-            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -80,8 +77,7 @@ const Login = () => {
         )
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user);
-            navigate("/browse");
+            //console.log(user);
           })
           .catch((error) => {
             const errorCode = error.code;
