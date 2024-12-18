@@ -4,11 +4,14 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/UserSlice";
 import { useEffect } from "react";
-import { Logo_URL } from "../utils/constants";
+import { Logo_URL, Support_language } from "../utils/constants";
+import { ToggleGptSearchView } from "../utils/GptSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store?.Gpt?.ShowSearch);
   const navigate = useNavigate();
   const handleSignout = () => {
     signOut(auth)
@@ -39,11 +42,41 @@ const Header = () => {
     // Unsubscribe when Component Unmounts
     return () => Unsubscribe();
   }, []);
+
+  const handleGptSearchClick = () => {
+    // ToggleView
+    dispatch(ToggleGptSearchView());
+  };
+  const handleChangeLanguage = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
   return (
     <div className=" absolute w-screen bg-gradient-to-b from-black px-8 py-2 z-10 flex justify-between">
       <img className="w-48" alt="logo" src={Logo_URL} />
       {user && (
         <div className="flex">
+          <div>
+            {showGptSearch && (
+              <select
+                className="m-6 p-1 bg-gray-400 text-white"
+                onChange={handleChangeLanguage}
+              >
+                {Support_language?.map((lang) => (
+                  <option key={lang?.identifier} value={lang.identifier}>
+                    {lang?.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+          <div>
+            <button
+              className="bg-purple-600 mt-5 p-2 text-white rounded-md"
+              onClick={handleGptSearchClick}
+            >
+              {showGptSearch ? "Homepage" : "GPT Search"}
+            </button>
+          </div>
           <img
             className="w-10 h-10 my-5 px-1"
             alt="logo"

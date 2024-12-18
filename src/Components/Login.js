@@ -10,7 +10,7 @@ import { auth } from "../utils/firebase";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/UserSlice";
-import { profile_Url } from "../utils/constants";
+import { BG_URL, profile_Url } from "../utils/constants";
 
 const Login = () => {
   const [IssignInform, setSigninform] = useState(true);
@@ -92,10 +92,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          alt="logo"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/81d64f3c-9627-4741-8f74-422bf35f9f1d/web/IN-en-20241104-TRIFECTA-perspective_55263ea2-af7f-40ed-9cf0-7029a9b9baf4_small.jpg"
-        />
+        <img alt="logo" src={BG_URL} />
       </div>
       <form
         className="w-4/12 absolute bg-black p-12 my-32 mx-auto right-0 left-0 text-white opacity-80 rounded-lg"
