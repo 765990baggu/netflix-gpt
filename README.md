@@ -37,6 +37,14 @@
 - GptSearchPage
 - GptSearchBar
 - Multi-Language Feature in our App
+- Get Gemini Api Key
+- Gpt Search Api Call
+- Fetched GptMoviesSuggestions from TMDB
+- Created GptSlice Added Data
+- Reused movielist Component to make movie Suggestion Container
+- Added .env File
+- Adding .env File to gitignore
+- Made our Site Responsive
 
 # Features
 

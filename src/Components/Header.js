@@ -51,10 +51,10 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className=" absolute w-screen bg-gradient-to-b from-black px-8 py-2 z-10 flex justify-between">
-      <img className="w-48" alt="logo" src={Logo_URL} />
+    <div className=" absolute w-screen bg-gradient-to-b from-black px-8 py-2 z-10 flex  flex-col md:flex-row justify-between">
+      <img className="w-32 md:w-48 mx-auto md:mx-0" alt="logo" src={Logo_URL} />
       {user && (
-        <div className="flex">
+        <div className="flex justify-between">
           <div>
             {showGptSearch && (
               <select
@@ -78,7 +78,7 @@ const Header = () => {
             </button>
           </div>
           <img
-            className="w-10 h-10 my-5 px-1"
+            className="w-10 h-10 my-5 px-1 hidden md:block"
             alt="logo"
             src={user?.photoURL}
           />
